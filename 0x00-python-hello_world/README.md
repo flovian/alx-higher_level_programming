@@ -3,11 +3,7 @@
 I learned how to use the interpreter, printing text
 and variables, and indexing and slicing strings in Python.
 
-## Tests :heavy_check_mark:
-
-* [tests](./tests): Folder of test files. Provided by Holberton School.
-
-## Function Prototypes :floppy_disk:
+## Function Prototypes
 
 Prototypes for functions written in this project:
 
