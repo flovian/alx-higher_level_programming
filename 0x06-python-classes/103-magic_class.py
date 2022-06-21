@@ -1,25 +1,21 @@
 #!/usr/bin/python3
-"""Define a MagicClass matching exactly a bytecode
-Represent a circle.
-Arg:
-   radius (float or int): The radius of the new MagicClass.
-Return:
-      the area of the MagicClass
-"""
-
-
+"""Defines a class MagicClass"""
 import math
 
 
 class MagicClass:
+    """This represents a circle"""
     def __init__(self, radius=0):
+        """Initializes the Magic Class"""
         self.__radius = 0
         if type(radius) is not int and type(radius) is not float:
-            raise TypeError("radius must be a number")
+            raise TypeError('radius must be a number')
         self.__radius = radius
 
     def area(self):
-        return (self.__radius ** 2 * math.pi)
+        """Calculaes the area of the circle"""
+        return (self.__radius ** 2) * math.pi
 
     def circumference(self):
-        return (2 * math.pi * self.__radius)
+        """Calculates the circumference of the circle"""
+        return 2 * math.pi * self.__radius
