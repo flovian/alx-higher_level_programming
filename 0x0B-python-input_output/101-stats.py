@@ -1,38 +1,33 @@
 #!/usr/bin/python3
+'Log Parsing'
 import sys
 
+status_list = [200, 301, 400, 401, 403, 404, 405, 500]
+try:
+    total_size = 0
+    final_list = []
+    for index, line in enumerate(sys.stdin, 1):
+        if line:
+            line_split = line.split()
+            if len(line_split) > 2:
+                if line_split[-1].isnumeric() and line_split[-2].isnumeric():
+                    size = line_split[-1]
+                    status = line_split[-2]
+                    total_size += int(size)
+            if len(status) > 0 and int(status) in status_list:
+                final_list.append(int(status))
+        if index % 10 == 0:
+            print('File size: {}'.format(total_size))
+            for i in status_list:
+                if i in final_list:
+                    status_count = final_list.count(i)
+                    print("{}: {}".format(i, status_count))
+except Exception:
+    pass
 
-def print_status():
-    '''
-        Printing the status of the request
-    '''
-    counter = 0
-    size = 0
-    file_size = 0
-    status_codes = {"200": 0, "301": 0, "400": 0, "401": 0,
-                    "403": 0, "404": 0, "405": 0, "500": 0}
-
-    for l in sys.stdin:
-        line = l.split()
-        try:
-            size += int(line[-1])
-            code = line[-2]
-            status_codes[code] += 1
-        except:
-            continue
-        if counter == 9:
-            print("File size: {}".format(size))
-            for key, val in sorted(status_codes.items()):
-                if (val != 0):
-                    print("{}: {}".format(key, val))
-            counter = 0
-        counter += 1
-    if counter < 9:
-        print("File size: {}".format(size))
-        for key, val in sorted(status_codes.items()):
-            if (val != 0):
-                print("{}: {}".format(key, val))
-
-
-if __name__ == "__main__":
-    print_status()
+finally:
+    print('File size: {}'.format(total_size))
+    for i in status_list:
+        if i in final_list:
+            status_count = final_list.count(i)
+            print("{}: {}".format(i, status_count))
