@@ -1,9 +1,9 @@
 # Javascript - Warm up
 
-First JavaScript project which involved writing various
-introductory-level JavaScript scripts on Node.js.
+This was the first JavaScript project I completed at Holberton. Tasks involved
+writing various introductory-level JavaScript scripts on Node.js.
 
-## Function Prototypes 
+## Function Prototypes :floppy_disk:
 
 Prototypes for functions written in this project:
 
