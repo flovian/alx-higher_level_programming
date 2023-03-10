@@ -1,0 +1,69 @@
+'''
+# Import the required function
+>>> import ctypes
+>>> import os
+>>> import subprocess
+>>> from subprocess import Popen, PIPE
+>>> lib_path = os.path.abspath(os.path.join(os.path.curdir, './libPython.so'))
+>>> prog_path = os.path.abspath(os.path.join(os.path.curdir, './102-python.py'))
+>>> in_p = Popen(['echo', ''], stdout=PIPE, stderr=PIPE)
+>>> rec_p = Popen([prog_path], stdin=in_p.stdout, stdout=PIPE, stderr=subprocess.STDOUT)
+>>> in_p.stdout.close()  # Allow rec_p to receive a SIGPIPE if in_p exits.
+>>> output = rec_p.communicate()[0].decode('utf-8')
+>>> rec_p.returncode
+0
+>>> in_p.kill()
+>>> rec_p.kill()
+>>> print(output, end='')
+[.] string object info
+  type: compact ascii
+  length: 36
+  value: English: I do not know what you mean
+[.] string object info
+  type: compact unicode object
+  length: 40
+  value: Russian: Я не знаю, что вы имеете в виду
+[.] string object info
+  type: compact ascii
+  length: 42
+  value: French: je ne sais pas ce que tu veux dire
+[.] string object info
+  type: compact unicode object
+  length: 54
+  value: French: L'huile et l'eau ne peuvent pas être mélangées
+[.] string object info
+  type: compact unicode object
+  length: 21
+  value: Chinese: 我不知道你想表达什么意思
+[.] string object info
+  type: compact unicode object
+  length: 26
+  value: Korean: 난 당신이 무슨 뜻인지 모르겠어요
+[.] string object info
+  type: compact unicode object
+  length: 18
+  value: Japanese: 意味が分からない
+[.] string object info
+  type: compact unicode object
+  length: 32
+  value: Yoruba: Emi ko mọ kini o tumọ si
+[.] string object info
+  type: compact unicode object
+  length: 29
+  value: Igbo: Amaghị m ihe ị na -ekwu
+[.] string object info
+  type: compact ascii
+  length: 37
+  value: Kinyarwanda: Sinzi icyo ushaka kuvuga
+[.] string object info
+  type: compact ascii
+  length: 31
+  value: Swahili: Sijui unamaanisha nini
+[.] string object info
+  [ERROR] Invalid String Object
+[.] string object info
+  [ERROR] Invalid String Object
+[.] string object info
+  [ERROR] Invalid String Object
+
+'''
